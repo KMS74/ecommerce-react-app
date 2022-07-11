@@ -2,7 +2,6 @@ import React from 'react';
 import { Col, Row, Spinner } from 'react-bootstrap';
 import AddCategoryHook from '../../hook/category/add-category-hook';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const AdminAddCategory = () => {
   // !the order of array destructure is very important

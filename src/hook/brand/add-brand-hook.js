@@ -1,21 +1,21 @@
-// All the logic about adding a new category
+// All the logic about adding a new brand
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
-import { createCategory } from '../../redux/actions/categoryAction';
+import { createBrand } from '../../redux/actions/brandAction';
 import notify from '../useNotifaction';
 import avatar from '../../images/avatar.png';
-const AddCategoryHook = () => {
+const AddBrandHook = () => {
   const [img, setImg] = useState(avatar);
   const [name, setName] = useState('');
   const [selectedImgFile, setSelectedImgFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isPress, setIsPress] = useState(false);
 
-  const res = useSelector((state) => state.allCategory.category);
+  const res = useSelector((state) => state.allBrand.brand);
 
   const dispatch = useDispatch();
 
-  //  set category name
+  //  set brand name
   const onChangeName = (e) => {
     e.persist();
     setName(e.target.value);
@@ -28,8 +28,8 @@ const AddCategoryHook = () => {
     }
   };
 
-  // post new category data
-  const handelSubmit = (event) => {
+  // post new brand data
+  const handelSubmit = async (event) => {
     event.preventDefault();
     if (name === '' || selectedImgFile === null) {
       notify('من فضلك قم بادخال جميع البيانات', 'warn');
@@ -41,7 +41,7 @@ const AddCategoryHook = () => {
     setLoading(true);
     setIsPress(true);
     console.log('all done!');
-    dispatch(createCategory(formData));
+    await dispatch(createBrand(formData));
     setLoading(false);
   };
 
@@ -75,4 +75,4 @@ const AddCategoryHook = () => {
     onChangeName,
   ];
 };
-export default AddCategoryHook;
+export default AddBrandHook;

@@ -34,28 +34,23 @@ const ProductCard = () => {
         </div>
         <Card.Body>
           <Card.Title>
-            <div className="card-title">
-              سود كربون ساعة يد ذكية بيب إس أسود كربون{' '}
-            </div>
+            <p className="card-title">
+              لوريم ايبسوم هو نموذج افتراضي يوضع في التصاميم لتعرض على العميل{' '}
+            </p>
           </Card.Title>
-          <Card.Text>
-            <div className="d-flex justify-content-between ">
-              <div className="d-flex">
-                <img
-                  className=""
-                  src={rate}
-                  alt=""
-                  height="16px"
-                  width="16px"
-                />
-                <div className="card-rate mx-2">4.5</div>
-              </div>
-              <div className="d-flex">
-                <div className="card-price">880</div>
-                <div className="card-currency mx-1">جنيه</div>
-              </div>
+          {/* <Card.Text> */}
+          {/* Card.Text renders as p tag so we shouldn't nesting div inside p */}
+          <div className="d-flex justify-content-between ">
+            <div className="d-flex">
+              <img className="" src={rate} alt="" height="16px" width="16px" />
+              <div className="card-rate mx-2">4.5</div>
             </div>
-          </Card.Text>
+            <div className="d-flex">
+              <div className="card-price">880</div>
+              <div className="card-currency mx-1">جنيه</div>
+            </div>
+          </div>
+          {/* </Card.Text> */}
         </Card.Body>
       </Card>
     </Col>

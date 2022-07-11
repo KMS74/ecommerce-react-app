@@ -1,35 +1,33 @@
 import React from 'react';
 import BrandCard from './BrandCard';
-import brand1 from '../../images/brand1.png';
-import brand2 from '../../images/brand2.png';
-import brand3 from '../../images/brand3.png';
-import { Container, Row } from 'react-bootstrap';
-const BrandContainer = () => {
+import { Container, Row, Spinner } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+
+const BrandContainer = ({ data, loading }) => {
   return (
     <Container>
       <div className="admin-content-text mt-2 ">كل الماركات</div>
       <Row className="my-1 d-flex justify-content-between">
-        <BrandCard img={brand1} />
-        <BrandCard img={brand2} />
-        <BrandCard img={brand3} />
-        <BrandCard img={brand2} />
-        <BrandCard img={brand1} />
-        <BrandCard img={brand3} />
-        <BrandCard img={brand1} />
-        <BrandCard img={brand2} />
-        <BrandCard img={brand3} />
-        <BrandCard img={brand2} />
-        <BrandCard img={brand1} />
-        <BrandCard img={brand3} />
-        <BrandCard img={brand1} />
-        <BrandCard img={brand2} />
-        <BrandCard img={brand3} />
-        <BrandCard img={brand2} />
-        <BrandCard img={brand1} />
-        <BrandCard img={brand3} />
+        {loading === false ? (
+          // ? if there are brands?
+          data.length > 0 ? (
+            // * display the first six brands
+            data.slice(0, 5).map((item, index) => {
+              return <BrandCard key={item._id} img={item.image} />;
+            })
+          ) : (
+            <h4>لا يوجد ماركات</h4>
+          )
+        ) : (
+          <Spinner animation="border" variant="primary" />
+        )}
       </Row>
     </Container>
   );
+};
+BrandContainer.propTypes = {
+  data: PropTypes.array,
+  loading: PropTypes.bool,
 };
 
 export default BrandContainer;

@@ -10,7 +10,7 @@ const AllCategoryHook = () => {
   const dispatch = useDispatch();
   // When the component mounted to the DOM
   useEffect(() => {
-    // limit = 6 '6 products are displayed per page'
+    // limit = 6 '6 categories are displayed per page'
     dispatch(getAllCategory(6));
   }, []);
 
@@ -19,9 +19,9 @@ const AllCategoryHook = () => {
 
   // to get page count
   let pageCount = 0;
-  if (category.paginationResult)
+  if (category.paginationResult) {
     pageCount = category.paginationResult.numberOfPages;
-
+  }
   // When press on Pagination buttons
   const getPage = (page) => {
     console.log(page);
