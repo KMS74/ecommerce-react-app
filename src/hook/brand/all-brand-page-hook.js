@@ -9,7 +9,7 @@ const AllBrandHook = () => {
   useEffect(() => {
     // limit = 4 '4 brands are displayed per page'
     dispatch(getAllBrand(4));
-  }, []);
+  }, [dispatch]);
 
   const brand = useSelector((state) => state.allBrand.brand);
   const loading = useSelector((state) => state.allBrand.loading);

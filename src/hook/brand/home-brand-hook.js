@@ -6,13 +6,27 @@ import { getAllBrand } from './../../redux/actions/brandAction';
 
 const HomeBrandHook = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllBrand());
-  }, []);
+  }, [dispatch]);
 
-  const brand = useSelector((state) => state.allBrand.brand);
+  const allBrand = useSelector((state) => state.allBrand.brand);
   const loading = useSelector((state) => state.allBrand.loading);
-  console.log(brand.data);
+
+  let brand = [];
+
+  try {
+    if (allBrand.data) {
+      brand = allBrand.data.slice(0, 5);
+      console.log('THE FIRST FIVE BRANDS:');
+      console.log(brand);
+    } else {
+      brand = [];
+    }
+  } catch (e) {
+    console.log(e);
+  }
 
   return [brand, loading];
 };

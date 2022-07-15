@@ -12,7 +12,6 @@ const AddCategoryHook = () => {
   const [isPress, setIsPress] = useState(false);
 
   const res = useSelector((state) => state.allCategory.category);
-
   const dispatch = useDispatch();
 
   //  set category name
@@ -58,12 +57,13 @@ const AddCategoryHook = () => {
       setTimeout(() => setIsPress(false), 1000);
 
       if (res.status === 201) {
-        notify('تمت عملية الاضافة بنجاح', 'success');
-      } else {
+        // TODO ???
         notify('هناك مشكله فى عملية الاضافة', 'error');
+      } else {
+        notify('تمت عملية الاضافة بنجاح', 'success');
       }
     }
-  }, [loading]);
+  }, [loading, res.status]);
 
   return [
     img,

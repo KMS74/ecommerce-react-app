@@ -7,11 +7,10 @@ const HomeCategoryHook = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCategory());
-  }, []);
+  }, [dispatch]);
 
-  const category = useSelector((state) => state.allCategory.category);
+  const allCategory = useSelector((state) => state.allCategory.category);
   const loading = useSelector((state) => state.allCategory.loading);
-  console.log(category.data);
   const colors = [
     '#FFD3E8',
     '#F4DBA5',
@@ -20,6 +19,20 @@ const HomeCategoryHook = () => {
     '#0034FF',
     '#FFD3E8',
   ];
+
+  let category = [];
+  try {
+    if (allCategory.data) {
+      category = allCategory.data.slice(0, 5);
+      console.log('THE FIRST FIVE CATEGORIES:');
+      console.log(category);
+    } else {
+      category = [];
+    }
+  } catch (e) {
+    console.log(e);
+  }
+
   return [category, loading, colors];
 };
 export default HomeCategoryHook;

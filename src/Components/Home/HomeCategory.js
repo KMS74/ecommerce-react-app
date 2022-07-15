@@ -12,8 +12,8 @@ const HomeCategory = () => {
       <SubTiltle title="التصنيفات" btntitle="المزيد" pathText="/allcategory" />
       <Row className="my-2 d-flex justify-content-between">
         {loading === false ? (
-          category.data ? (
-            category.data.slice(0, 5).map((item, index) => {
+          category.length > 0 ? (
+            category.map((item, index) => {
               return (
                 <CategoryCard
                   key={item._id}

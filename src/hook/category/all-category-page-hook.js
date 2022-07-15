@@ -12,7 +12,7 @@ const AllCategoryHook = () => {
   useEffect(() => {
     // limit = 6 '6 categories are displayed per page'
     dispatch(getAllCategory(6));
-  }, []);
+  }, [dispatch]);
 
   const category = useSelector((state) => state.allCategory.category);
   const loading = useSelector((state) => state.allCategory.loading);

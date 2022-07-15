@@ -63,7 +63,7 @@ const AddBrandHook = () => {
         notify('هناك مشكله فى عملية الاضافة', 'error');
       }
     }
-  }, [loading]);
+  }, [loading, res.status]);
 
   return [
     img,

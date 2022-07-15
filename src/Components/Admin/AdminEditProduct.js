@@ -1,16 +1,20 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
-import Multiselect from 'multiselect-react-dropdown';
-import { CompactPicker } from 'react-color';
-import add from '../../images/add.png';
-// TODO  Search of Invalid Hook Calling
+import { useParams } from 'react-router-dom';
 import MultiImageInput from 'react-multiple-image-input';
-
+import { Col, Row } from 'react-bootstrap';
+import { Multiselect } from 'multiselect-react-dropdown';
+import { CompactPicker } from 'react-color';
 import { ToastContainer } from 'react-toastify';
-import AdminAddProductsHook from './../../hook/products/add-products-hook';
+import AdminEditProductsHook from './../../hook/products/edit-product-hook';
+import add from '../../images/add.png';
 
-const AdminAddProducts = () => {
+const AdminEditProduct = () => {
+  // product id
+  const { id } = useParams();
+  console.log(id);
   const [
+    catId,
+    brandId,
     onChangeDesName,
     onChangeQty,
     onChangeColor,
@@ -37,11 +41,14 @@ const AdminAddProducts = () => {
     prodDescription,
     prodName,
     crop,
-  ] = AdminAddProductsHook();
+  ] = AdminEditProductsHook(id);
   return (
     <div>
       <Row className="justify-content-start ">
-        <div className="admin-content-text pb-4"> اضافه منتج جديد</div>
+        <div className="admin-content-text pb-4">
+          {' '}
+          تعديل المنتج : {prodName}
+        </div>
         <Col sm="8">
           <div className="text-form pb-2"> صور للمنتج</div>
           <MultiImageInput
@@ -91,6 +98,7 @@ const AdminAddProducts = () => {
             name="cat"
             className="select input-form-area mt-3 px-2"
             onChange={onSelectCategory}
+            value={catId}
           >
             <option value="0"> اختر التصنيف الرئيسي</option>
             {category.data
@@ -118,6 +126,7 @@ const AdminAddProducts = () => {
             id="brand"
             className="select input-form-area mt-3 px-2 "
             onChange={onSelectBrand}
+            value={brandId}
           >
             <option value="0"> اخترالماركة</option>
             {brand.data
@@ -173,4 +182,4 @@ const AdminAddProducts = () => {
   );
 };
 
-export default AdminAddProducts;
+export default AdminEditProduct;
