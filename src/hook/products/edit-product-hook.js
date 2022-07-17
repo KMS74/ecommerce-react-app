@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCategory } from '../../redux/actions/categoryAction';
 import { getAllBrand } from './../../redux/actions/brandAction';
@@ -25,17 +24,6 @@ const AdminEditProductsHook = (proId) => {
   const [showColor, setShowColor] = useState(false);
   const [options, setOptions] = useState([]);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const run = async () => {
-      await dispatch(getOneProduct(proId));
-      await dispatch(getAllCategory());
-      await dispatch(getAllBrand());
-    };
-    run();
-  }, [dispatch, proId]);
-
   //   get one product data details
   const item = useSelector((state) => state.allproducts.oneProduct);
   // getting all products from redux store
@@ -47,18 +35,31 @@ const AdminEditProductsHook = (proId) => {
   // getting all sub categories from redux store
   const subcat = useSelector((state) => state.subCategory.subcategory);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (item.data) {
-      setImages(item.data.images);
-      setProdName(item.data.title);
-      setProdDescription(item.data.description);
-      setPriceBefore(item.data.price);
-      setPriceAftr(item.data.price);
-      setQty(item.data.quantity);
-      setCatId(item.data.category);
-      setBrandId(item.data.brand);
-      setProdColors(item.data.availableColors);
-    }
+    const run = async () => {
+      await dispatch(getOneProduct(proId));
+      await dispatch(getAllCategory());
+      await dispatch(getAllBrand());
+    };
+    run();
+  }, [dispatch, proId]);
+
+  useEffect(() => {
+    try {
+      if (item.data) {
+        setImages(item.data.images);
+        setProdName(item.data.title);
+        setProdDescription(item.data.description);
+        setPriceBefore(item.data.price);
+        setPriceAftr(item.data.price);
+        setQty(item.data.quantity);
+        setCatId(item.data.category);
+        setBrandId(item.data.brand);
+        setProdColors(item.data.availableColors);
+      }
+    } catch (e) {}
   }, [item]);
 
   // multi image crop config object
@@ -107,8 +108,7 @@ const AdminEditProductsHook = (proId) => {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line eqeqeq
-    if (catId != 0) {
+    if (catId !== 0) {
       const run = async () => {
         await dispatch(getAllSubCatInCate(catId));
       };
@@ -181,6 +181,7 @@ const AdminEditProductsHook = (proId) => {
     const response = await fetch(url, { mode: 'cors' });
     const data = await response.blob();
     const ext = url.split('.').pop();
+    // eslint-disable-next-line no-unused-vars
     const filename = url.split('/').pop();
     const metadata = { type: `image/${ext}` };
     return new File([data], Math.random(), metadata);

@@ -8,7 +8,7 @@ import {
   UPDATE_PRODUCTS,
 } from './../type';
 import { useInsertDataWithImage } from '../../hooks/useInsertData';
-import useGetData from '../../hooks/useGetData';
+import { useGetData } from '../../hooks/useGetData';
 import useDeleteData from '../../hooks/useDeleteData';
 import { useInUpdateDataWithImage } from '../../hooks/useUpdateData';
 

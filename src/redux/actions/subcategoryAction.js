@@ -4,7 +4,7 @@ import {
   GET_SUB_CATEGORY_IN_CATEGORY,
 } from './../type';
 import { useInsertData } from '../../hooks/useInsertData';
-import useGetData from '../../hooks/useGetData';
+import { useGetData } from '../../hooks/useGetData';
 
 // creating a new sub category
 export const createSubCategory = (data) => async (dispatch) => {

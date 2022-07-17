@@ -45,10 +45,7 @@ const AdminEditProduct = () => {
   return (
     <div>
       <Row className="justify-content-start ">
-        <div className="admin-content-text pb-4">
-          {' '}
-          تعديل المنتج : {prodName}
-        </div>
+        <div className="admin-content-text pb-4">تعديل المنتج : {prodName}</div>
         <Col sm="8">
           <div className="text-form pb-2"> صور للمنتج</div>
           <MultiImageInput
@@ -101,7 +98,7 @@ const AdminEditProduct = () => {
             value={catId}
           >
             <option value="0"> اختر التصنيف الرئيسي</option>
-            {category.data
+            {category.data === true
               ? category.data.map((item) => {
                   return (
                     <option key={item._id} value={item._id}>

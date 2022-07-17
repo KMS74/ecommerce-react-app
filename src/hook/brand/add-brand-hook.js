@@ -47,21 +47,25 @@ const AddBrandHook = () => {
 
   // when the loading status is cahnged perform this function
   useEffect(() => {
-    if (loading === false) {
-      console.log('loading is finished!');
-      // clear input data
-      setImg(avatar);
-      setName('');
-      setSelectedImgFile(null);
-      console.log('all done!');
-      setLoading(true);
-      setTimeout(() => setIsPress(false), 1000);
+    try {
+      if (loading === false) {
+        console.log('loading is finished!');
+        // clear input data
+        setImg(avatar);
+        setName('');
+        setSelectedImgFile(null);
+        console.log('all done!');
+        setLoading(true);
+        setTimeout(() => setIsPress(false), 1000);
 
-      if (res.status === 201) {
-        notify('تمت عملية الاضافة بنجاح', 'success');
-      } else {
-        notify('هناك مشكله فى عملية الاضافة', 'error');
+        if (res.status === 201) {
+          notify('تمت عملية الاضافة بنجاح', 'success');
+        } else {
+          notify('هناك مشكله فى عملية الاضافة', 'error');
+        }
       }
+    } catch (e) {
+      console.log(e);
     }
   }, [loading, res.status]);
 

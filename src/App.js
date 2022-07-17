@@ -24,6 +24,9 @@ import UserAddAddressPage from './Page/User/UserAddAddressPage';
 import UserEditAddressPage from './Page/User/UserEditAddressPage';
 import UserProfilePage from './Page/User/UserProfilePage';
 import AdminEditProductPage from './Page/Admin/AdminEditProductPage';
+import ForgetPasswordPage from './Page/Auth/ForgetPasswordPage';
+import VerifyPasswordPage from './Page/Auth/VerifyPasswordPage';
+import ResetPasswordHook from './hook/auth/reset-password-hook';
 function App() {
   return (
     <div className="font">
@@ -63,6 +66,12 @@ function App() {
           <Route path="/user/add-address" element={<UserAddAddressPage />} />
           <Route path="/user/edit-address" element={<UserEditAddressPage />} />
           <Route path="/user/profile" element={<UserProfilePage />} />
+          <Route
+            path="/user/forget-password"
+            element={<ForgetPasswordPage />}
+          />
+          <Route path="/user/verify-code" element={<VerifyPasswordPage />} />
+          <Route path="/user/reset-password" element={<ResetPasswordHook />} />
         </Routes>
       </BrowserRouter>
       <Footer />

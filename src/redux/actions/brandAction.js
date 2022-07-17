@@ -4,7 +4,7 @@ import {
   CREATE_BRAND,
   GET_ONE_BRAND,
 } from './../type';
-import useGetData from '../../hooks/useGetData';
+import { useGetData } from '../../hooks/useGetData';
 import { useInsertDataWithImage } from '../../hooks/useInsertData';
 
 export const getAllBrand = (limit) => async (dispatch) => {

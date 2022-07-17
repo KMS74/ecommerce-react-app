@@ -1,16 +1,23 @@
 import baseURL from '../API/baseURL';
 
-const useInsertData = async (url, params) => {
-  const res = await baseURL.post(url, params);
+const useInsertDataWithImage = async (url, parmas) => {
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  };
+  const res = await baseURL.post(url, parmas, config);
   return res;
 };
 
-const useInsertDataWithImage = async (url, params) => {
+const useInsertData = async (url, parmas) => {
   const config = {
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
   };
-  const res = await baseURL.post(url, params, config);
-  console.log(res.status);
+  const res = await baseURL.post(url, parmas, config);
   return res;
 };
 

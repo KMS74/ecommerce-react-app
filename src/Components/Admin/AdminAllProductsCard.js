@@ -7,13 +7,15 @@ import { useDispatch } from 'react-redux';
 import { deleteProducts } from '../../redux/actions/productsAction';
 
 const AdminAllProductsCard = ({ item }) => {
-  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handelDelete = async () => {
+    console.log('deleting product');
     await dispatch(deleteProducts(item._id));
     handleClose();
     window.location.reload();
