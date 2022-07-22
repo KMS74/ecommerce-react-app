@@ -20,12 +20,15 @@ const ViewProductsDetalisHook = (prodID) => {
 
   // to show products item
   let item = [];
-  if (oneProducts.data) {
-    item = oneProducts.data;
-  } else {
-    item = [];
+  try {
+    if (oneProducts.data) {
+      item = oneProducts.data;
+    } else {
+      item = [];
+    }
+  } catch (e) {
+    console.log(e);
   }
-
   useEffect(() => {
     if (item.category) {
       dispatch(getOneCategory(item.category));
@@ -40,35 +43,50 @@ const ViewProductsDetalisHook = (prodID) => {
 
   // to view images gallery
   let images = [];
-  if (item.images) {
-    images = item.images.map((img) => {
-      return { original: img };
-    });
-  } else {
-    images = [{ original: `${mobile}` }];
+  try {
+    if (item.images) {
+      images = item.images.map((img) => {
+        return { original: img };
+      });
+    } else {
+      images = [{ original: `${mobile}` }];
+    }
+  } catch (e) {
+    console.log(e);
   }
 
   // to show category item
   let cat = [];
-  if (oneCategory.data) {
-    cat = oneCategory.data;
-  } else {
-    cat = [];
+  try {
+    if (oneCategory.data) {
+      cat = oneCategory.data;
+    } else {
+      cat = [];
+    }
+  } catch (e) {
+    console.log(e);
   }
-
   // to show brand item
   let brand = [];
-  if (oneBrand.data) {
-    brand = oneBrand.data;
-  } else {
-    brand = [];
+  try {
+    if (oneBrand.data) {
+      brand = oneBrand.data;
+    } else {
+      brand = [];
+    }
+  } catch (e) {
+    console.log(e);
   }
 
   let similarProducts = [];
-  if (productLike) {
-    similarProducts = productLike.data;
-  } else {
-    similarProducts = [];
+  try {
+    if (productLike) {
+      similarProducts = productLike.data;
+    } else {
+      similarProducts = [];
+    }
+  } catch (e) {
+    console.log(e);
   }
 
   return [item, images, cat, brand, productLike, similarProducts];

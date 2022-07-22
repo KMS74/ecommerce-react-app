@@ -18,6 +18,7 @@ const useInsertData = async (url, parmas) => {
     },
   };
   const res = await baseURL.post(url, parmas, config);
+  console.log(res);
   return res;
 };
 

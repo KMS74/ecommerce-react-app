@@ -18,7 +18,7 @@ const ProductText = () => {
         <Col md="8">
           <div className="cat-title d-inline">
             {item.title}
-            <div className="cat-rate d-inline mx-3">{item.ratingsQuantity}</div>
+            <div className="cat-rate d-inline mx-3">{item.ratingsAverage}</div>
           </div>
         </Col>
       </Row>

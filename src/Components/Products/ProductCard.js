@@ -1,10 +1,16 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
-import favoff from '../../images/fav-off.png';
+import { ToastContainer } from 'react-toastify';
+
 import rate from '../../images/rate.png';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-const ProductCard = ({ item }) => {
+
+import ProductCardHook from './../../hook/products/product-card-hook';
+
+const ProductCard = ({ item, favProd, flag }) => {
+  const [, , handelFav, favImg] = ProductCardHook(item, favProd);
+
   return (
     <Col xs="6" sm="6" md="4" lg="3" className="d-flex">
       <Card
@@ -21,43 +27,57 @@ const ProductCard = ({ item }) => {
         <Link to={`/products/${item._id}`} style={{ textDecoration: 'none' }}>
           <Card.Img
             style={{ height: '228px', width: '100%' }}
-            src={item.imageCover}
+            src={
+              flag
+                ? 'http://127.0.0.1:8000/products/' + item.imageCover
+                : item.imageCover
+            }
           />
         </Link>
         <div className="d-flex justify-content-end mx-2">
           <img
-            src={favoff}
+            src={favImg}
             alt=""
+            onClick={handelFav}
             className="text-center"
             style={{
               height: '24px',
               width: '26px',
+              cursor: 'pointer',
             }}
           />
         </div>
         <Card.Body>
           <Card.Title>
-            <p className="card-title">{item.title}</p>
+            <div className="card-title">{item.title}</div>
           </Card.Title>
-          {/* <Card.Text> */}
-          {/* Card.Text renders as p tag so we shouldn't nesting div inside p */}
-          <div className="d-flex justify-content-between ">
-            <div className="d-flex">
-              <img className="" src={rate} alt="" height="16px" width="16px" />
-              <div className="card-rate mx-2">{item.ratingsQuantity}</div>
+          <Card.Text>
+            <div className="d-flex justify-content-between ">
+              <div className="d-flex">
+                <img
+                  className=""
+                  src={rate}
+                  alt=""
+                  height="16px"
+                  width="16px"
+                />
+                <div className="card-rate mx-2">{item.ratingsAverage || 0}</div>
+              </div>
+              <div className="d-flex">
+                <div className="card-price">{item.price}</div>
+                <div className="card-currency mx-1">جنيه</div>
+              </div>
             </div>
-            <div className="d-flex">
-              <div className="card-price">{item.price}</div>
-              <div className="card-currency mx-1">جنيه</div>
-            </div>
-          </div>
-          {/* </Card.Text> */}
+          </Card.Text>
         </Card.Body>
       </Card>
+      <ToastContainer />
     </Col>
   );
 };
 ProductCard.propTypes = {
   item: PropTypes.object,
+  favProd: PropTypes.array,
+  flag: PropTypes.bool,
 };
 export default ProductCard;
